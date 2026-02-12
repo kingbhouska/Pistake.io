@@ -1,5 +1,5 @@
-index.html
 <!DOCTYPE html>
+<index.html>
 <html>
 <head>
   <title>Pi Staking Platform</title>
