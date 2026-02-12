@@ -1,94 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Pi Staking Platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiStake | Staking Dashboard (Demo)</title>
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 40px;
-      background: #111827;
-      align-items: center;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
-      color: #fbbf24;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
 
-    .wallet-btn {
-      background: #fbbf24;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
 
-    .demo-banner {
-      background: red;
-      text-align: center;
-      padding: 10px;
-      font-weight: bold;
-    }
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fbbf24;
+}
 
-    .card {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 15px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
+.wallet-btn {
+  background: #fbbf24;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    h2 {
-      color: #fbbf24;
-    }
+.demo-banner {
+  text-align: center;
+  padding: 10px;
+  background: #dc2626;
+  font-weight: 600;
+}
 
-    select, input {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 10px;
-      width: 100%;
-    }
+.container {
+  padding: 40px 60px;
+}
 
-    button.action {
-      margin-top: 15px;
-      padding: 10px;
-      background: #fbbf24;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
 
-    .value {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-  </style>
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.card h3 {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.stake-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+button.action {
+  width: 100%;
+  padding: 12px;
+  background: #fbbf24;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  color: #94a3b8;
+}
+
+tr {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+@media(max-width: 900px) {
+  .stake-section {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="demo-banner">
-  ⚠ PI STACKING UNDER LOCKUP DURATION –  PI STAKING.IO
+⚠ DEMO PLATFORM – No Real Blockchain Interaction
 </div>
 
 <header>
@@ -98,73 +147,102 @@
 
 <div class="container">
 
-  <!-- Dashboard -->
-  <div class="card">
-    <h2>Dashboard</h2>
-    <div class="value">Account: Kingsley </div>
-    <div class="value">Staked Amount: 1,060 PI</div>
-    <div class="value">APR: 12%</div>
-    <div class="value">Live Profit: <span id="profit">0.00</span> PI</div>
+  <!-- Stats -->
+  <div class="cards">
+    <div class="card">
+      <h3>Account</h3>
+      <p>Kingsley (Demo)</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Staked</h3>
+      <p>1,060 PI</p>
+    </div>
+
+    <div class="card">
+      <h3>APR</h3>
+      <p>12%</p>
+    </div>
+
+    <div class="card">
+      <h3>Live Earnings</h3>
+      <p id="profit">0.00 PI</p>
+    </div>
   </div>
 
-  <!-- Staking Options -->
-  <div class="card">
-    <h2>Stake PI</h2>
+  <!-- Staking -->
+  <div class="stake-section">
 
-    <label>Choose Lock Period:</label>
-    <select id="lockPeriod">
-      <option value="30">30 Days - 8% APR</option>
-      <option value="90">90 Days - 12% APR</option>
-      <option value="180">180 Days - 18% APR</option>
-    </select>
+    <div class="card">
+      <h2>Stake PI</h2>
 
-    <label>Amount to Stake (PI):</label>
-    <input type="number" id="stakeAmount" placeholder="Enter amount">
+      <label>Amount</label>
+      <input type="number" id="amount" placeholder="Enter PI amount">
 
-    <button class="action" onclick="calculateROI()">Calculate Estimated ROI</button>
+      <label>Lock Period</label>
+      <select id="period">
+        <option value="0.08">30 Days - 8%</option>
+        <option value="0.12">90 Days - 12%</option>
+        <option value="0.18">180 Days - 18%</option>
+      </select>
 
-    <div class="value" id="roiResult"></div>
+      <button class="action" onclick="calculate()">Calculate Returns</button>
+
+      <p id="result" style="margin-top:15px;"></p>
+    </div>
+
+    <div class="card">
+      <h2>Recent Transactions</h2>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>Feb 12, 2026</td>
+          <td>500 PI</td>
+          <td>Active</td>
+        </tr>
+        <tr>
+          <td>Jan 20, 2026</td>
+          <td>560 PI</td>
+          <td>Active</td>
+        </tr>
+      </table>
+    </div>
+
   </div>
 
 </div>
 
 <script>
-  let profit = 0;
+let profit = 0;
 
-  // Simulated Live Profit Counter
-  setInterval(() => {
-    profit += 0.03;
-    document.getElementById("profit").innerText = profit.toFixed(2);
-  }, 1000);
+setInterval(() => {
+  profit += 0.05;
+  document.getElementById("profit").innerText = profit.toFixed(2) + " PI";
+}, 1000);
 
-  // Fake Wallet Connect (UI Only)
-  function connectWallet() {
-    alert("Demo Wallet Connected Successfully!");
+function connectWallet() {
+  alert("Demo Wallet Connected Successfully");
+}
+
+function calculate() {
+  const amount = parseFloat(document.getElementById("amount").value);
+  const rate = parseFloat(document.getElementById("period").value);
+
+  if(!amount) {
+    alert("Enter staking amount");
+    return;
   }
 
-  // ROI Calculator
-  function calculateROI() {
-    const amount = parseFloat(document.getElementById("stakeAmount").value);
-    const period = document.getElementById("lockPeriod").value;
+  const reward = amount * rate;
+  const total = amount + reward;
 
-    if (!amount) {
-      alert("Enter staking amount");
-      return;
-    }
-
-    let apr;
-
-    if (period == 30) apr = 0.08;
-    if (period == 90) apr = 0.12;
-    if (period == 180) apr = 0.18;
-
-    const reward = amount * apr;
-    const total = amount + reward;
-
-    document.getElementById("roiResult").innerHTML =
-      `Estimated Reward: ${reward.toFixed(2)} PI<br>
-       Total After Lock: ${total.toFixed(2)} PI`;
-  }
+  document.getElementById("result").innerHTML =
+    "Estimated Reward: " + reward.toFixed(2) + " PI<br>Total After Lock: " + total.toFixed(2) + " PI";
+}
 </script>
 
 </body>
