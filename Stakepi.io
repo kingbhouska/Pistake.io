@@ -1,7 +1,8 @@
-index.html<!DOCTYPE html>
+index.html
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Pi Staking Platform (Demo)</title>
+  <title>Pi Staking Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
